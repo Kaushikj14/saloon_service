@@ -6,16 +6,22 @@ import com.example.Saloon.service.payload.dto.UserDTO;
 import com.example.Saloon.service.repository.SaloonRepository;
 import com.example.Saloon.service.service.SaloonService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class SaloonServiceImpl implements SaloonService {
 
 
     private final SaloonRepository saloonRepository;
+
+    @Autowired  // ✅ Spring will inject the dependency
+    public SaloonServiceImpl(SaloonRepository saloonRepository) {
+        this.saloonRepository = saloonRepository;
+    }
 
     @Override
     public Saloon createSaloon(SaloonDTO req, UserDTO user) {
@@ -27,7 +33,7 @@ public class SaloonServiceImpl implements SaloonService {
         saloon.setImages(req.getImages());
         saloon.setClosingTime(req.getClosingTime());
         saloon.setOpenTime(req.getOpenTime());
-        saloon.setOwnerId(req.getOwnerId());
+        saloon.setOwnerId(user.getId());
         saloon.setPhoneNumber(req.getPhoneNumber());
         return saloonRepository.save(saloon);
     }
