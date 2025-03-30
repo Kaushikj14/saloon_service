@@ -13,6 +13,10 @@ public class SaloonMapper {
 //        saloonDTO.setCity(saloon.getCity());
 //        saloonDTO.setImages(saloon.getImages());
 
+
+//     updated
+
+
         saloonDTO.setId(saloon.getId());
         saloonDTO.setName(saloon.getName());
         saloonDTO.setAddress(saloon.getAddress());
